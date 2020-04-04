@@ -11,7 +11,7 @@ import argparse
 import datetime
 import time
 
-_VERSION = "1.0.0"
+_VERSION = "1.0.1"
 
 class TemperatureController:
     current_temp = -999
@@ -34,13 +34,13 @@ class TemperatureController:
         return (now.strftime("%d/%m//%Y, %H:%M:%S"))
 
     def monitor_temperature(self):
-        output = "     {0}: {1}*{2}         ".format(self._get_timestamp(), self._get_temperature(args.fahrenheit), "F" if args.fahrenheit else "C")
+        output = "     {0}: {1}*{2}         "
         if args.once:
-            print(output)
+            print(output.format(self._get_timestamp(), self._get_temperature(args.fahrenheit), "F" if args.fahrenheit else "C"))
             print()
         else:
             while (True):
-                print(output, end="\r")
+                print(output.format(self._get_timestamp(), self._get_temperature(args.fahrenheit), "F" if args.fahrenheit else "C"), end="\r")
                 time.sleep(1)
 
 
