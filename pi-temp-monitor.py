@@ -5,13 +5,7 @@
     Date:    4 April 2020
 '''
 
-import os
-import re
 import argparse
-import datetime
-import time
-import curses
-import math
 import tvc
 
 _VERSION = "2.0.0"
