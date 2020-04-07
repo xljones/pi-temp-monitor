@@ -11,13 +11,14 @@ Run `python3 pi-temp-monitor.py [-o] [-f]` to get the basic output
 
 ## Help
 ```
-usage: pi-temp-monitor.py [-h] [-o] [-f]
+usage: pi-temp-monitor.py [-h] [-o] [-f] [-g]
 
-Raspberry Pi Temperature Monitor (v1.0.1)
+Raspberry Pi Temperature Monitor (v2.0.0)
 
 optional arguments:
   -h, --help        show this help message and exit
   -o, --once        Just show one instance of the temperature
-  -f, --fahrenheit  Show temperature in degrees Fahrenheit, default is to use
+  -f, --fahrenheit  Show temperature in degress Fahrenheit, default is to use
                     degrees Celsius
+  -g, --graph       Show bar graph of temperatures to track trend
 ```
