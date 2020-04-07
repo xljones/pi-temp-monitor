@@ -71,6 +71,7 @@ class CursesBarGraph:
 class TemperatureViewController:
     clock_speed = {
         "setpoint": -999,
+        "setpoint_last_update": -999,
         "current": -999
     }
     temperature = {
@@ -100,12 +101,23 @@ class TemperatureViewController:
         return(round(self.temperature["current"],1))
 
     def _get_clock_speed_setpoint(self):
+        # Returns clock speed in kHz
         system_cmd = os.popen("vcgencmd get_config arm_freq")
         get_str = system_cmd.read()
         regex_pattern = re.compile("arm_freq=([\d\.]+)")
         regex_matches = regex_pattern.match(get_str)
-        self.clock_speed["setpoint"] = float(regex_matches.group(1))
+        self.clock_speed["setpoint"] = float(regex_matches.group(1))/1000 # Command returns in MHz, /1000 convert to GHz
+        self.clock_speed["setpoint_last_update"] = datetime.datetime.now()
         return(round(self.clock_speed["setpoint"],1))
+
+    def _get_clock_speed_current(self):
+        # Returns clock speed in Hz
+        system_cmd = os.popen("vcgencmd measure_clock arm")
+        get_str = system_cmd.read()
+        regex_pattern = re.compile("frequency\(\d+\)=([\d\.]+)")
+        regex_matches = regex_pattern.match(get_str)
+        self.clock_speed["current"] = float(regex_matches.group(1))/1000000000 # Command returns in Hz, /1000000 to convert to GHz
+        return(round(self.clock_speed["current"],1))
 
     def _get_timestamp(self):
         now = datetime.datetime.now()
@@ -121,11 +133,11 @@ class TemperatureViewController:
 
     def text_temperature(self):
         self._print_header()
-        output = "     {0} (CPU {1}Hz): {2}*{3}     "
+        output = "     {0} (CPU {1}/{2}GHz): {3}*{4}     "
         if self._args.once:
-            print(output.format(self._get_timestamp(), self._get_clock_speed_setpoint(), self._get_temperature(self._args.fahrenheit), "F" if self._args.fahrenheit else "C"))
+            print(output.format(self._get_timestamp(), self._get_clock_speed_current(), self._get_clock_speed_setpoint(), self._get_temperature(self._args.fahrenheit), "F" if self._args.fahrenheit else "C"))
             print()
         else:
             while (True):
-                print(output.format(self._get_timestamp(), self._get_clock_speed_setpoint(), self._get_temperature(self._args.fahrenheit), "F" if self._args.fahrenheit else "C"), end="\r")
+                print(output.format(self._get_timestamp(), self._get_clock_speed_current(), self._get_clock_speed_setpoint(), self._get_temperature(self._args.fahrenheit), "F" if self._args.fahrenheit else "C"), end="\r")
                 time.sleep(1)
