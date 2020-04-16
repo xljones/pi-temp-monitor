@@ -1,4 +1,4 @@
-# pi-temp-monitor
+# pi-temp-monitor 
 Python scripts to monitor Raspberry Pi temperature
 
 Tested with Python v3.7.3, on Raspberry Pi 2 Model B (v1.1)
