@@ -1,3 +1,5 @@
+"""."""
+
 import argparse
 
 from app.temperatures import TemperatureViewController
@@ -17,7 +19,10 @@ if __name__ == "__main__":
     p.add_argument(
         "-f",
         "--fahrenheit",
-        help="Show temperature in degress Fahrenheit, default is to use degrees Celsius",
+        help=(
+            "Show temperature in degress Fahrenheit, "
+            "default is to use degrees Celsius"
+        ),
         action="store_true",
     )
     p.add_argument(

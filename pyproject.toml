@@ -1,0 +1,25 @@
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.black]
+line-length = 79
+
+[tool.flake8]
+extend-ignore = ["E203", "D100", "D103", "D104", "W504"]
+docstring-convention = "google"
+
+[tool.mypy]
+ignore_missing_imports = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.coverage.run]
+data_file = "./tmp/.coverage"
+
+[tool.coverage.report]
+fail_under = 100
+
+[tool.pytest.ini_options]
+addopts = "--cov=service --durations=10"
