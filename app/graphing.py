@@ -1,10 +1,12 @@
 import curses
 import math
 
-'''
+"""
     Based on CursesBarGraph (markfickett/fht_curses_graph)
     https://gist.github.com/markfickett/9eb86be659df639b0eee
-'''
+"""
+
+
 class CursesBarGraph:
     def __init__(self):
         self._window = None
@@ -45,13 +47,12 @@ class CursesBarGraph:
     def _draw_bar(self, column_num, value, h):
         bar_len = max(0, min(h - 1, int(h * (value / self._max))))
         # vline draws from the starting coordinate towards positive y (down).
-        self._window.vline((h - 1) - bar_len, column_num, ord('|'), bar_len)
+        self._window.vline((h - 1) - bar_len, column_num, ord("|"), bar_len)
 
     def _draw_axis_labels(self, h, w, max_column, num_values):
         self._window.addstr(0, 0, str(self._max))
         self._window.addstr(h - 1, 0, str(0))
         max_column_str = str(num_values)
         self._window.addstr(
-            h - 1,
-            min(max_column, w - (len(max_column_str) + 1)),
-            max_column_str)
+            h - 1, min(max_column, w - (len(max_column_str) + 1)), max_column_str
+        )
