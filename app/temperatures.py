@@ -1,8 +1,7 @@
-from datetime import datetime
 import os
 import re
 import time
-
+from datetime import datetime
 from typing import Any
 
 
@@ -11,9 +10,7 @@ class TemperatureViewController:
         "setpoint": -999.0,
         "current": -999.0,
     }
-    temperature = {
-        "current": -999.0
-    }
+    temperature = {"current": -999.0}
 
     def __init__(self, args: Any, version: str) -> None:
         self._args = args
@@ -53,10 +50,7 @@ class TemperatureViewController:
         print("")
 
     @staticmethod
-    def _sys_cmd_and_regex(
-        command: str,
-        regex_pattern: str
-    ) -> str:
+    def _sys_cmd_and_regex(command: str, regex_pattern: str) -> str:
         response = os.popen(command).read()
         regex = re.compile(regex_pattern)
         matches = regex.match(response)
