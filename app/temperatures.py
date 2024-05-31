@@ -51,7 +51,7 @@ class TemperatureViewController:
         # Returns clock speed in Hz
         system_cmd = os.popen("vcgencmd measure_clock arm")
         get_str = system_cmd.read()
-        regex_pattern = re.compile("frequency\(\d+\)=([\d\.]+)")
+        regex_pattern = re.compile(r"frequency\(\d+\)=([\d\.]+)")
         regex_matches = regex_pattern.match(get_str)
         self.clock_speed["current"] = float(regex_matches.group(1))/1000000000 # Command returns in Hz, /1000000 to convert to GHz
         return(round(self.clock_speed["current"],1))
