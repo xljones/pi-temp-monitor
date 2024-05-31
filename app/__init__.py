@@ -1,14 +1,8 @@
-'''
-    Script:  pi-temp.monitor.py
-    Author:  Xander Jones (xander@xljones.com)
-    Web:     xljones.com
-    Date:    4 April 2020
-'''
-
 import argparse
-import tvc
 
-_VERSION = "2.0.0"
+from app.temperatures import TemperatureViewController
+
+_VERSION = "3.0.0"
 
 if (__name__ == "__main__"):
     p = argparse.ArgumentParser(description='Raspberry Pi Temperature Monitor (v{0})'.format(_VERSION))
@@ -19,7 +13,7 @@ if (__name__ == "__main__"):
     p.add_argument('-g', '--graph', help='Show bar graph of temperatures to track trend', action='store_true')
     args = p.parse_args()
 
-    tempcontroller = tvc.TemperatureViewController(args, _VERSION)
+    tempcontroller = TemperatureViewController(args, _VERSION)
 
     if args.graph:
         tempcontroller.graph_temperature()

@@ -1,19 +1,24 @@
 # pi-temp-monitor
 Python scripts to monitor Raspberry Pi temperature
 
-Tested with Python v3.7.3, on Raspberry Pi 2 Model B (v1.1)
+Tested with Python v3.12, on Raspberry Pi 3 (2015)
 
 ## Requirements
-None other than basic Python install on Raspbian.
 
-## Running the script
-Run `python3 pi-temp-monitor.py [-o] [-f]` to get the basic output
+N/A
+
+## Usage
+
+Run `python -m app [-h]`
 
 ## Help
-```
-usage: pi-temp-monitor.py [-h] [-o] [-f] [-g]
 
-Raspberry Pi Temperature Monitor (v2.0.0)
+View the help file with `python -m app -h
+
+```
+usage: python -m app [-h] [-o] [-f] [-g]
+
+Raspberry Pi Temperature Monitor (v3.0.0)
 
 optional arguments:
   -h, --help        show this help message and exit
